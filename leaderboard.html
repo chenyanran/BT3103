@@ -1,0 +1,55 @@
+<head>
+    <title>Leaderboard</title>
+</head>
+
+<body>
+    <h1>Leaderboard</h1>
+    {{> addPlayerForm}}
+    <br>
+    {{> leaderboard}}
+    <center><img src="/board.jpg" alt="Game Board of Snake and Ladders" ></center>
+</body>
+
+
+<template name="addPlayerForm">
+<p>Please add 4 players and then start the game. No player shall quit half-way, otherwise there will be an error.
+</p>
+<br>
+<center>
+    <form>
+        <input type="text" name="playerName">
+        <input type="submit" value="Add Player">
+    </form>
+</center>
+</template>
+
+
+<template name="leaderboard">
+<table class="w3-table w3-striped w3-border">
+<thead>
+<tr class="w3-light-blue">
+  <th>Turn</th>
+  <th>Name</th>
+  <th>Score (0-100)</th>
+</tr>
+</thead>
+    {{#each player}}
+        <tr class="player {{selectedClass}}">
+        <td>{{status}}</td>
+        <td>{{name}}</td>
+        <td>{{score}}</td>
+        </tr>
+    {{/each}}
+</table>
+
+    {{#if selectedPlayer}}
+    <li>Selected Player: {{selectedPlayer.name}}</li>
+    <li>
+        <button class="remove">Remove Player</button>
+    </li>
+  {{/if}}
+
+  <p><center><button class="roll">Roll</button></center></p>
+  <p><center id="insert"></center></p>
+</template>
+
